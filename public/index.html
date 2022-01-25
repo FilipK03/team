@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>store</title>
 </head>
 <body>
-    <h1>test</h1>
+    <div class="topbar"><h2>Register</h2></div>
+    <form action="/register" method="post">
+        Name<input name="name" type="text" required>
+        Email<input name="email" type="email" required>
+        Password<input name="password" type="password" required>
+        <button class="button2">sign up</button>
+    </form>
 </body>
 </html>

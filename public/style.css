@@ -34,6 +34,7 @@ h2 {
 }
 
 .child1 {
+
     background: radial-gradient(60.12% 60.12% at 104.83% -0.03%, rgb(74, 81, 92, 0.3) 0%, rgba(74, 81, 92, 0) 100%);
     width: 50%;
     height: 90vh;
@@ -89,8 +90,8 @@ height: 8vh;
 }
 
 .align1 {
-margin-left: 250px;
-    width: 25%;
+margin-left: 35%;
+    width: 30%;
     height: 16vh;
 }
 

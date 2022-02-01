@@ -9,8 +9,10 @@ mongoose.connect("mongodb+srv://meawi:anjing123@cluster0.cos6p.mongodb.net/team?
 const team = mongoose.connection
 
 team.on('open', (err)=>{
-    if(err)throw err
+    if(err)console.log("\x1b[31m", err)
+
     console.log("\x1b[32m", "Connected to database");
+    console.log("\x1b[37m", "");
 })
 
 const userSchema = mongoose.Schema({
@@ -32,9 +34,10 @@ server.post("/register", (req, res)=>{
     })
     data.save((err)=>{
         if(err){
-            console.log(err);
+            console.log("\x1b[31m", err);
         }
-        console.log("\x1b[32m", "Saved user to database");
+        console.log("\x1b[32m", "Saved to database");
+        console.log("\x1b[37m", "");
     })
     res.redirect("/")
 })
@@ -46,8 +49,9 @@ server.post("/login", (req, res)=>{
     async function auth() {
         const match = await  Users.findOne({email:userEmail, password:userPassword})
         if(match){
-            res.redirect("/homepage.html")
+            res.sendFile(__dirname + "/public/" + "homepage.html")
             console.log("\x1b[32m", "Login Successful")
+            console.log("\x1b[37m", "");
         }else{
             res.send("Login Failed")
         }

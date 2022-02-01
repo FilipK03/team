@@ -10,7 +10,7 @@ const team = mongoose.connection
 
 team.on('open', (err)=>{
     if(err)throw err
-    console.log('ansluten till databas');
+    console.log("\x1b[32m", "Connected to database");
 })
 
 const userSchema = mongoose.Schema({
@@ -34,9 +34,26 @@ server.post("/register", (req, res)=>{
         if(err){
             console.log(err);
         }
-        console.log("sparade användare till databasen");
+        console.log("\x1b[32m", "Saved user to database");
     })
     res.redirect("/")
+})
+
+server.post("/login", (req, res)=>{
+    const userName = req.body.name
+    const userEmail = req.body.email
+    const userPassword = req.body.password
+    async function auth() {
+        const match = await  Users.findOne({email:userEmail, password:userPassword})
+        if(match){
+            res.redirect("/homepage.html")
+            console.log("\x1b[32m", "Login Successful")
+        }else{
+            res.send("Login Failed")
+        }
+    }
+    auth()
+
 })
 
 server.listen(3469)

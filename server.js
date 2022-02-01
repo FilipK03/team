@@ -60,4 +60,4 @@ server.post("/login", (req, res)=>{
 
 })
 
-server.listen(3469)
+server.listen(3000)

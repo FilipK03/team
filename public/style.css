@@ -101,9 +101,8 @@ p {
 color: white;
 font-family: sans-serif;
 font-weight: bold;
-font-size: 1rem;
+font-size: 1.5rem;
  margin-left: 130px;
-width: 45px;
 height: 10px;
 margin: 0;
 margin-bottom: 50px;
@@ -112,7 +111,6 @@ margin-top: 20px;
 }
 
 .p2 {
-    width: 75px;
     height: 10px;
     margin: 0;
     margin-bottom: 50px;

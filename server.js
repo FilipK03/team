@@ -9,10 +9,14 @@ mongoose.connect("mongodb+srv://meawi:anjing123@cluster0.cos6p.mongodb.net/team?
 const team = mongoose.connection
 
 team.on('open', (err)=>{
+
+    // Failed to connect
     if(err)console.log("\x1b[31m", err)
 
-    console.log("\x1b[32m", "Connected to database");
+    // Connected to database
+    console.log("\x1b[33m", "Connected to database");
     console.log("\x1b[37m", "");
+
 })
 
 const userSchema = mongoose.Schema({
@@ -34,10 +38,16 @@ server.post("/register", (req, res)=>{
     })
     data.save((err)=>{
         if(err){
-            console.log("\x1b[31m", err);
-        }
-        console.log("\x1b[32m", "Saved to database");
+
+        // Failed to save
+        console.log("\x1b[31m", err);
+        
+    }
+
+        // Saved to database
+        console.log("\x1b[33m", "Saved to database");
         console.log("\x1b[37m", "");
+
     })
     res.redirect("/")
 })
@@ -50,14 +60,30 @@ server.post("/login", (req, res)=>{
         const match = await  Users.findOne({email:userEmail, password:userPassword})
         if(match){
             res.sendFile(__dirname + "/public/" + "homepage.html")
-            console.log("\x1b[32m", "Login Successful")
+
+            // Login Successful
+            console.log("\x1b[33m", "Login Successful")
             console.log("\x1b[37m", "");
+
         }else{
+
+            // Login Failed
             res.send("Login Failed")
+            console.log("\x1b[31m", "Login Failed")
+            console.log("\x1b[37m", "");
+
         }
     }
     auth()
 
 })
 
-server.listen(3469)
+server.get("/users", (req, res)=>{
+    async function findAll(){
+    let data = await Users.find({})
+    res.send(data)
+}
+findAll()
+})
+
+server.listen(3000)

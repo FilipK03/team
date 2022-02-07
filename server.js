@@ -78,6 +78,7 @@ server.post("/login", (req, res)=>{
 
 })
 
+
 server.get("/users", (req, res)=>{
     async function findAll(){
     let data = await Users.find({})
@@ -85,5 +86,6 @@ server.get("/users", (req, res)=>{
 }
 findAll()
 })
+
 
 server.listen(3000)

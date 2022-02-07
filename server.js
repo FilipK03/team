@@ -65,6 +65,12 @@ server.post("/login", (req, res)=>{
             console.log("\x1b[33m", "Login Successful")
             console.log("\x1b[37m", "");
 
+            console.log(match)
+
+            fetch("/login", {
+                method:post
+            })
+
         }else{
 
             // Login Failed
@@ -76,14 +82,6 @@ server.post("/login", (req, res)=>{
     }
     auth()
 
-})
-
-server.get("/users", (req, res)=>{
-    async function findAll(){
-    let data = await Users.find({})
-    res.send(data)
-}
-findAll()
 })
 
 server.listen(3000)

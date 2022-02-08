@@ -3,10 +3,11 @@ const server = express()
 const mongoose = require("mongoose")
 server.use(express.static("public"))
 server.use(express.urlencoded({extended:true}))
+require("dotenv").config()
 
 let user
 
-mongoose.connect("mongodb+srv://meawi:anjing123@cluster0.cos6p.mongodb.net/team?retryWrites=true&w=majority")
+mongoose.connect(process.env.databas)
 
 const team = mongoose.connection
 

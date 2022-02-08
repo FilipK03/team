@@ -4,6 +4,8 @@ const mongoose = require("mongoose")
 server.use(express.static("public"))
 server.use(express.urlencoded({extended:true}))
 
+let user
+
 mongoose.connect("mongodb+srv://meawi:anjing123@cluster0.cos6p.mongodb.net/team?retryWrites=true&w=majority")
 
 const team = mongoose.connection
@@ -52,6 +54,16 @@ server.post("/register", (req, res)=>{
     res.redirect("/")
 })
 
+server.get("/homepage", (req, res)=> {
+    
+    res.sendFile(__dirname + "/public/" + "homepage.html")
+    
+})
+
+server.get("/getdata", (req, res)=>{
+    res.json(user)
+})
+
 server.post("/login", (req, res)=>{
     const userName = req.body.name
     const userEmail = req.body.email
@@ -59,11 +71,13 @@ server.post("/login", (req, res)=>{
     async function auth() {
         const match = await  Users.findOne({email:userEmail, password:userPassword})
         if(match){
-            res.sendFile(__dirname + "/public/" + "homepage.html")
+            res.redirect("/homepage")
 
             // Login Successful
             console.log("\x1b[33m", "Login Successful")
             console.log("\x1b[37m", "");
+
+            user = match
 
         }else{
 
@@ -77,15 +91,5 @@ server.post("/login", (req, res)=>{
     auth()
 
 })
-
-
-server.get("/users", (req, res)=>{
-    async function findAll(){
-    let data = await Users.find({})
-    res.send(data)
-}
-findAll()
-})
-
 
 server.listen(3000)
